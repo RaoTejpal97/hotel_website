@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hotel Ashapura Palace Nathdwara</title>
+  <style>
+    body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; background: #fafafa; }
+    /* Top Bar */
+    .top-bar {
+      background: #222;
+      color: #fff;
+      padding: 0.35rem 1.5rem;
+      text-align: right;
+      font-size: 1rem;
+      letter-spacing: 0.5px;
+    }
+
+    .about-container {
+      display: flex;
+      align-items: flex-start;
+      max-width: 1100px;
+      margin: 0 auto;
+      gap: 32px;
+    }
+
+    .about-img img {
+      width: 250px;        /* Adjust as needed */
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.13);
+      object-fit: cover;
+      display: block;
+    }
+
+    .about-text {
+      flex: 1 1 0%;
+    }
+
+    @media (max-width: 800px) {
+      .about-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 18px;
+      }
+      .about-img img {
+        width: 90vw;
+        max-width: 350px;
+      }
+      .about-text {
+        width: 100%;
+      }
+    }
+    /* Navbar */
+    .navbar {
+      background: #fff;
+      box-shadow: 0 2px 8px #eee;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .logo { font-size: 1.3rem; font-weight: bold; color: #222; }
+    .nav-links { list-style: none; display: flex; margin: 0; padding: 0; }
+    .nav-links li { margin: 0 0.9rem; }
+    .nav-links a { text-decoration: none; color: #222; font-weight: 500; font-size: 1rem; }
+    .nav-links a:hover { color: #c19753; }
+    .btn-book {
+      background: #222;
+      color: #fff;
+      padding: 0.7rem 2rem;
+      border-radius: 6px;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 1.05rem;
+      transition: background 0.2s;
+      margin-left: 1rem;
+    }
+    .btn-book:hover { background: #c19753; color: #fff; }
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(rgba(34,34,34,0.72), rgba(34,34,34,0.52)), url('image/himalaya.jpg') center/cover no-repeat;
+      min-height: 350px;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 3rem 1rem 4rem 1rem;
+    }
+    .hero-content h1 { font-size: 2.5rem; font-weight: bold; letter-spacing: 1px; margin-bottom: 1rem; }
+    .hero-content p { font-size: 1.15rem; margin-bottom: 1.5rem; }
+    .btn-hero {
+      background: #c19753;
+      color: #fff;
+      padding: 0.8rem 2.2rem;
+      border-radius: 4px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-hero:hover { background: #a87a37; }
+    /* Sections */
+    .main-content { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; }
+    section { margin-bottom: 3rem; }
+    h2 { color: #2d2d2d; margin-bottom: 1rem; }
+    /* Room Cards */
+    .room-section { 
+      display: flex; 
+      flex-wrap: wrap; 
+      justify-content: center; 
+      gap: 2rem; 
+      margin-bottom: 3rem; 
+    }
+    .room-card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px #eee;
+      padding: 2rem 2rem 1.5rem 2rem;
+      text-align: center;
+      margin: 1rem 0;
+      min-width: 260px;
+      max-width: 340px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .room-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      background: #f0f0f0;
+    }
+    .room-card h3 { margin: 0.7rem 0 0.5rem 0; }
+    .room-card .price { font-weight: bold; margin-bottom: 1rem; }
+    .room-card .book-btn {
+      display: inline-block;
+      background: #222;
+      color: #fff;
+      padding: 0.75rem 2.2rem;
+      border-radius: 6px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      text-decoration: none;
+      margin-bottom: 0.5rem;
+      transition: background 0.2s;
+    }
+    .room-card .book-btn:hover { background: #c19753; color: #fff; }
+    /* What We Offer */
+    .offer-cards { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+    .offer-card {
+      flex: 1 1 250px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px #eee;
+      padding: 1.5rem;
+      min-width: 250px;
+      max-width: 320px;
+      margin-bottom: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .offer-card div { font-size: 2.2rem; margin-bottom: 0.5rem; }
+    .offer-card h3 { margin: 0 0 0.5rem 0; }
+    .offer-card p { text-align: center; color: #444; }
+    /* Contact section styling */
+    .contact-flex { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 2rem; }
+    .contact-form { flex: 1 1 300px; max-width: 400px; min-width: 280px; background: #fff; border-radius: 8px; box-shadow: 0 2px 8px #eee; padding: 1.5rem; }
+    .contact-form label { display: block; margin-bottom: 0.5rem; color: #222; font-weight: 500; }
+    .contact-form input, .contact-form select, .contact-form textarea {
+      width: 100%; padding: 0.5rem; margin-bottom: 1rem; border-radius: 4px; border: 1px solid #ccc; font-size: 1rem;
+    }
+    .contact-form button {
+      background: #c19753; color: #fff; border: none; padding: 0.6rem 2.2rem; border-radius: 4px; font-size: 1rem; cursor: pointer;
+      transition: background 0.2s;
+    }
+    .contact-form button:hover { background: #a87a37; }
+    .contact-image { flex: 1 1 300px; max-width: 400px; }
+    .contact-image img { width: 100%; border-radius: 8px; box-shadow: 0 2px 8px #ccc; }
+    /* Chat Floating Button */
+    .chat-btn {
+      position: fixed;
+      left: 20px;
+      bottom: 25px;
+      z-index: 99;
+    }
+    .chat-btn button {
+      background: #6d38d3;
+      color: #fff;
+      border: none;
+      border-radius: 24px;
+      padding: 0.6rem 1.6rem;
+      font-size: 1.15rem;
+      box-shadow: 0 2px 8px #aaa;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .chat-btn button:hover { background: #4e238b; }
+    /* Modal Popup */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      overflow: auto;
+      background: rgba(0,0,0,0.4);
+    }
+    .modal-content {
+      background: #fff;
+      margin: 10% auto;
+      padding: 2rem;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 2px 16px #2225;
+      text-align: center;
+      position: relative;
+    }
+    .modal-content .close {
+      position: absolute;
+      right: 1.3rem; top: 1rem;
+      color: #aaa; font-size: 1.7rem; cursor: pointer;
+      font-weight: bold;
+    }
+    .modal-content .close:hover { color: #c19753; }
+
+    /* Location/footer styling */
+    .footer-section { background: #222; color: #fff; padding: 2rem 0 0 0; }
+    .footer-cols {
+      display: flex; flex-wrap: wrap; justify-content: space-around; align-items: flex-start;
+      max-width: 1200px; margin: 0 auto; padding: 2rem 1rem 1rem 1rem;
+    }
+    .footer-cols > div { min-width: 200px; margin-bottom: 1.5rem; }
+    .footer-cols h4, .footer-cols h3 { margin: 0 0 0.7rem 0; }
+    .footer-cols ul { list-style: none; padding: 0; margin: 0; }
+    .footer-cols li { margin-bottom: 0.5rem; }
+    .footer-cols a { color: #fff; text-decoration: none; }
+    .footer-cols a:hover { text-decoration: underline; }
+    @media (max-width: 900px) {
+      .offer-cards { flex-direction: column; align-items: center; }
+      .contact-flex { flex-direction: column; align-items: stretch; }
+      .footer-cols { flex-direction: column; align-items: flex-start; }
+    }
+    /* Responsive for room images */
+    @media (max-width: 600px) {
+      .room-card img { height: 120px; }
+    }
+
+    .rooms-section {
+      text-align: center;
+      padding: 40px 0 30px 0;
+    }
+    .section-title {
+      font-size: 2.3rem;
+      font-weight: 700;
+      color: #222;
+      margin-bottom: 12px;
+    }
+    .section-subtitle {
+      font-size: 1.15rem;
+      color: #222;
+      font-weight: 600;
+      margin-bottom: 18px;
+      letter-spacing: 0.4px;
+      display: inline-block;
+      position: relative;
+    }
+    .section-subtitle::after {
+      content: "";
+      display: block;
+      width: 60px;
+      height: 3px;
+      margin: 10px auto 0 auto;
+      background: #ba9b66;
+      border-radius: 2px;
+    }
+    .date-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .date-row input {
+      width: 80px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <span>📞 +91-9784370260</span>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="logo">
+      <strong>Hotel Ashapura<br>Palace Nathdwara</strong>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#rooms">Rooms</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a class="btn-book" href="javascript:void(0);" onclick="openModal()">Book Now</a>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h1>HOTEL ASHAPURA PALACE<br>NATHDWARA</h1>
+      <p>
+        Here are the best hotel booking sites, including recommendations for international travel and for finding low-priced hotel rooms.
+      </p>
+      <a class="btn-hero" href="javascript:void(0);" onclick="openModal()">Book Now</a>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about-section" id="about">
+    <div class="about-container">
+      <div class="about-img">
+        <img src="image/hotel.jpg" alt="Hotel Ashapura Palace">
+      </div>
+      <div class="about-text">
+        <h2>About Us</h2>
+        <h3>Find Luxury and Comfort at Hotel Ashapura Palace Nathdwara</h3>
+        <p>
+          Experience a comfortable and memorable stay at Hotel Ashapura Palace, nestled in the heart of Nathdwara at Gali No. 2, Chikalwas, Kumharwara, Rampura, Rajasthan 313301. Conveniently located near the revered Shreenathji Temple, our hotel provides a peaceful haven for devotees and travelers alike.
+        </p>
+        <p>
+          Unwind in our well–appointed rooms, thoughtfully designed with modern amenities to offer a blend of traditional charm and contemporary comfort. Whether you’re here for a spiritual pilgrimage or a relaxing getaway, our warm hospitality and dedicated service ensure a fulfilling and serene experience.
+        </p>
+        <p>
+          Book your stay at Hotel Ashapura Palace Nathdwara and discover the perfect blend of devotion, comfort, and Rajasthani warmth.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rooms Section -->
+  <section class="rooms-section">
+    <h2 class="section-title">Rooms we offer</h2>
+    <p class="section-subtitle">
+      Luxurious Hotel &amp; Accommodations at Hotel Ashapura Palace Nathdwara
+    </p>
+  </section>
+
+  
+  <!-- Rooms Section: Now using image and room data as per the screenshot -->
+  <section id="rooms" class="room-section">
+    <div class="room-card">
+      <img src="image/delux_room.jpg" alt="Deluxe Room" />
+      <h3>Deluxe Room</h3>
+      <div class="price">Price Start at: 2050/-<span style="font-weight:400">/Night</span></div>
+      <a href="javascript:void(0);" class="book-btn" onclick="openModal()">Book Now</a>
+    </div>
+    <div class="room-card">
+      <img src="image/super_delux.jpg" alt="Super Deluxe Room" />
+      <h3>Super Deluxe Room</h3>
+      <div class="price">Price Start at: 2550/-<span style="font-weight:400">/Night</span></div>
+      <a href="javascript:void(0);" class="book-btn" onclick="openModal()">Book Now</a>
+    </div>
+    <div class="room-card">
+      <img src="image/executive-suite-room.jpg" alt="Executive Suite Room" />
+      <h3>Executive Suite Room</h3>
+      <div class="price">Price Start at: 3550/-<span style="font-weight:400">/Night</span></div>
+      <a href="javascript:void(0);" class="book-btn" onclick="openModal()">Book Now</a>
+    </div>
+    <div class="room-card">
+      <img src="image/standard-room.jpg" alt="Standard Room" />
+      <h3>Standard Room</h3>
+      <div class="price">Price Start at: 4050/-<span style="font-weight:400">/Night</span></div>
+      <a href="javascript:void(0);" class="book-btn" onclick="openModal()">Book Now</a>
+    </div>
+  </section>
+
+  <!-- What We Offer Section -->
+   <!-- Rooms Section
+   <section class="main-content">
+    <h2 class="section-title">Rooms we offer</h2>
+    <p class="section-subtitle">
+      Luxurious Hotel &amp; Accommodations at Hotel Ashapura Palace Nathdwara
+    </p>
+  </section> -->
+  <section id="offers" class="main-content">
+    <h2 class = "section-title"; style="text-align: center;">What We Offers Here</h2>
+    <p style="text-align: center; max-width: 800px; margin: 0 auto;">
+      At Hotel Ashapura Palace Nathdwara, we take pride in offering a wide array of services thoughtfully crafted to elevate your stay and create lasting memories. Our commitment to excellence and focus on every detail are reflected in every facet of our hospitality, ensuring a truly comfortable and enriching experience by the sea.
+    </p>
+    <div class="offer-cards">
+      <div class="offer-card">
+        <div>🚗</div>
+        <h3>Car Parking</h3>
+        <p>
+          We understand the importance of convenience and security for guests traveling by car. That's why we offer ample and secure parking facilities to ensure a hassle-free experience. Enjoy peace of mind knowing your vehicle is safe and well-protected throughout your stay.
+        </p>
+      </div>
+      <div class="offer-card">
+        <div>♿</div>
+        <h3>Accessible</h3>
+        <p>
+          Ensuring accessibility for all our guests is a top priority. We are dedicated to providing a comfortable and inclusive environment where every guest feels welcome. Our goal is to make sure everyone can enjoy a relaxing and pleasant stay, with thoughtful facilities that cater to all needs.
+        </p>
+      </div>
+      <div class="offer-card">
+        <div>📶</div>
+        <h3>Free Wifi</h3>
+        <p>
+          Stay connected throughout your visit with our complimentary Wi-Fi service. We recognize the importance of seamless connectivity, whether for work or leisure, and provide high-speed internet access to all our guests at no extra cost—ensuring your stay is both productive and enjoyable.
+        </p>
+      </div>
+      <div class="offer-card">
+        <div>🍽️</div>
+        <h3>Dinner</h3>
+        <p>
+          Indulge in a delightful dining experience with a culinary journey that caters to every taste and preference. Whether you’re savoring local flavors or exploring a variety of cuisines, each meal promises to be a memorable part of your stay—enhancing your overall experience with comfort and flavor.
+        </p>
+      </div>
+      <div class="offer-card">
+        <div>☕</div>
+        <h3>Coffee and tea-making</h3>
+        <p>
+          We understand the importance of starting your day right or unwinding with a warm beverage. That’s why every room is equipped with convenient coffee and tea making facilities, allowing you to enjoy the comfort of home and refresh yourself at any time during your stay.
+        </p>
+      </div>
+      <div class="offer-card">
+        <div>🧺</div>
+        <h3>Laundry</h3>
+        <p>
+          We understand the importance of keeping your wardrobe fresh and tidy, even while traveling. That’s why we offer convenient and efficient laundry services to ensure you always look and feel your best—whether you’re here for business or leisure.
+        </p>
+      </div>
+    </div>
+  </section>
+<!-- Add this in your <head> -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    (function(){
+      emailjs.init("raotejpal97@gmail.com"); // Replace with your EmailJS user ID
+    })();
+  </script>
+
+<!-- Contact Us Section -->
+<section id="contact" class="main-content">
+  <h2 style="text-align: center;">Contact Us</h2>
+  <div class="contact-flex">
+    <form
+      class="contact-form"
+      id="contactForm"
+      action="https://docs.google.com/forms/d/e/1FAIpQLScCnp80XyMFBlNn-okSeSaj-TCALVVd73ovIzyVKKjfICQIDA/formResponse"
+      method="POST"
+      target="hidden_iframe"
+      onsubmit="showConfirmation()"
+    >
+    <label>Name *
+      <input type="text" name="entry.492545911" required />
+    </label>
+    <label>Phone *
+      <input type="tel" name="entry.480492651" required />
+    </label>
+    <label>Email *
+      <input type="email" name="entry.1508973171" required />
+    </label>
+
+    <label>Start Date *</label>
+    <div class="date-row">
+      <input type="number" name="entry.260906060_day" placeholder="Day" min="1" max="31" required />
+      <input type="number" name="entry.260906060_month" placeholder="Month" min="1" max="12" required />
+      <input type="number" name="entry.260906060_year" placeholder="Year" min="1900" max="2100" required />
+    </div>
+
+    <label>End Date *</label>
+    <div class="date-row">
+      <input type="number" name="entry.417306014_day" placeholder="Day" min="1" max="31" required />
+      <input type="number" name="entry.417306014_month" placeholder="Month" min="1" max="12" required />
+      <input type="number" name="entry.417306014_year" placeholder="Year" min="1900" max="2100" required />
+    </div>
+    
+    <label>Select Adult *
+      <select name="entry.233966961" required>
+        <option value="">Adult</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+      </select>
+    </label>
+    <label>Select Children
+      <select name="entry.927112343">
+        <option value="">Children</option>
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+      </select>
+    </label>
+    <label>Message *
+      <textarea name="entry.2025383988" required></textarea>
+    </label>
+      <button type="submit">Submit</button>
+    </form>
+    <iframe name="hidden_iframe" style="display:none;"></iframe>
+    <div class="contact-image">
+      <img src="image/hotel-ashapura-palace.jpg" alt="Hotel Ashapura Palace" />
+    </div>
+  </div>
+  <div
+    id="formMessage"
+    style="display:none; background: #f0fff0; color: #236023; padding: 18px; border-radius: 8px; margin-top: 22px; font-size: 1.12rem; font-weight: 500;"
+  ></div>
+  <p style="text-align:center; margin-top: 2rem;">
+    For reservations and inquiries, please call us at <strong>+91-9784370260</strong> or email us at <strong>raotejpal97gmail.com</strong>.
+  </p>
+</section>
+
+<script>
+function showConfirmation() {
+  setTimeout(function() {
+    document.getElementById('formMessage').style.display = 'block';
+    document.getElementById('formMessage').innerHTML = "Thank you for contacting us! Your response has been submitted.";
+    document.getElementById('contactForm').reset();
+  }, 800);
+}
+</script>
+
+  <!-- Chat Floating Button -->
+  <div class="chat-btn">
+    <button onclick="openModal()">💬 Contact us</button>
+  </div>
+
+  <!-- Modal Popup -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h3>Contact to Book</h3>
+      <p>Call us at <strong>+91-9784370260</strong> to book your room!</p>
+    </div>
+  </div>
+
+  <!-- Location & Footer Section -->
+  <section id="location" class="main-content">
+    <h2 style="text-align: center;">Discover the Best Hotel: Your Perfect Stay Awaits</h2>
+    <p style="text-align: center; max-width: 800px; margin: 0 auto;">
+      When planning a visit to Nathdwara, a town renowned for its divine atmosphere and cultural heritage, choosing the right place to stay is key. Look no further than Hotel Ashapura Palace, located at Gali No. 2, Chikalwas, Kumharwara, Rampura, Nathdwara, Rajasthan, where warm hospitality, a convenient location near Shreenathji Temple, and modern comforts come together to create a truly memorable experience.
+    </p>
+    <div style="display: flex; justify-content: center; margin: 2rem 0;">
+      <iframe
+        title="Hotel Ashapura Palace Location"
+        src="https://www.google.com/maps?q=Hotel+Ashapura+Palace+Nathdwara&output=embed"
+        width="600"
+        height="300"
+        style="border: 0;"
+        allowfullscreen
+        loading="lazy"
+      ></iframe>
+    </div>
+  </section>
+
+  <footer class="footer-section">
+    <div class="footer-cols">
+      <div>
+        <h3>Hotel Ashapura Palace Nathdwara</h3>
+        <p>
+          Hotel Ashapura Palace Nathdwara offers a serene and comfortable stay, just minutes from the sacred Shreenathji Temple, making it an ideal choice for pilgrims and travelers alike.
+        </p>
+      </div>
+      <div>
+        <h4>Information</h4>
+        <ul>
+          <li><a href="#offers">Home</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms & Conditions</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact Us</h4>
+        <p>
+          Gali no.2,<br />
+          Nathdwara, Rajasthan 313301<br />
+          <a href="tel:+919784370260" style="color: #fff;">+91-9784370260</a><br />
+          <a href="mailto:info@hotelashapurapalacenathdwara.co.in" style="color: #fff;">info@hotelashapurapalacenathdwara.co.in</a>
+        </p>
+      </div>
+    </div>
+    <div style="text-align: center; color: #ccc; margin: 0.7rem 0 0.2rem 0;">&copy; 2025 Hotel Ashapura Palace Nathdwara</div>
+  </footer>
+
+  <script>
+    function openModal() {
+      document.getElementById("modal").style.display = "block";
+    }
+    function closeModal() {
+      document.getElementById("modal").style.display = "none";
+    }
+    // Optional: close modal when clicking outside content
+    window.onclick = function(event) {
+      var modal = document.getElementById("modal");
+      if (event.target == modal) {
+        closeModal();
+      }
+    }
+  </script>
+</body>
+</html>
